@@ -1,4 +1,4 @@
-package pj.s30566;
+package pj.s30566.utils.mysql;
 import java.sql.*;
 
 public class MysqlDriver {
@@ -11,6 +11,11 @@ public class MysqlDriver {
         this.url = url;
         this.user = user;
         this.password = password;
+    }
+    public MysqlDriver(){
+        this.url = "jdbc:mysql://localhost:3306/database";
+        this.user = "username";
+        this.password = "password";
     }
 
     public Connection getConnection() throws SQLException {
@@ -28,6 +33,7 @@ public class MysqlDriver {
         Statement statement = connection.createStatement();
         return statement.executeUpdate(query);
     }
+
 
 
 }

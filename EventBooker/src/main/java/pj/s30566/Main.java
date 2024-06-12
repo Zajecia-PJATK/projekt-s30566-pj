@@ -1,17 +1,28 @@
 package pj.s30566;
+import pj.s30566.registration.Register;
+import pj.s30566.user.User;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.io.Console;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.println("Hello and welcome!");
+        Register register = new Register();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj nazwe uzytkownika");
+        String username = scanner.nextLine();
+        System.out.println("Podaj haslo: ");
+        String password = scanner.nextLine();
+        System.out.println("Podaj adres email: ");
+        String email = scanner.nextLine();
+        System.out.println("Jak masz na imie? ");
+        String name = scanner.nextLine();
+        System.out.println("A na nazwisko?");
+        String surname = scanner.nextLine();
+        System.out.println("Podaj numer telefonu");
+        String phone = scanner.nextLine();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        User user = new User(username, password, email, name, surname, phone);
+        register.registerUser(user);
     }
 }
