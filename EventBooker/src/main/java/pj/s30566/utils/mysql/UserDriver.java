@@ -1,5 +1,5 @@
 package pj.s30566.utils.mysql;
-import pj.s30566.user.User;
+import pj.s30566.model.User;
 import java.sql.*;
 
 public class UserDriver extends MysqlDriver {

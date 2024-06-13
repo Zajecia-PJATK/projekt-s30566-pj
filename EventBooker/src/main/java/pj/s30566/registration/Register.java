@@ -1,5 +1,5 @@
 package pj.s30566.registration;
-import pj.s30566.user.User;
+import pj.s30566.model.User;
 import pj.s30566.utils.mysql.UserDriver;
 
 public class Register {

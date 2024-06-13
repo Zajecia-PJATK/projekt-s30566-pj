@@ -1,8 +1,7 @@
 package pj.s30566;
 import pj.s30566.registration.Register;
-import pj.s30566.user.User;
+import pj.s30566.model.User;
 
-import java.io.Console;
 import java.util.Scanner;
 
 public class Main {

@@ -1,4 +1,4 @@
-package pj.s30566.user;
+package pj.s30566.model;
 import pj.s30566.utils.PasswordUtils;
 public class User {
     private int ID;
