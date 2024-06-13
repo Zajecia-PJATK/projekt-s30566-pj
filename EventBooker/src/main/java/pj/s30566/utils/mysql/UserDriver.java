@@ -3,7 +3,6 @@ import pj.s30566.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.sql.*;
 
 public class UserDriver extends MysqlDriver {

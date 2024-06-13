@@ -12,12 +12,17 @@ public class MysqlDriver {
         this.user = user;
         this.password = password;
     }
-    public MysqlDriver(){
-        this.url = "jdbc:mysql://localhost:3306/database";
-        this.user = "username";
-        this.password = "password";
-    }
+//    public MysqlDriver(){
+//        this.url = "jdbc:mysql://localhost:3306/database";
+//        this.user = "username";
+//        this.password = "password";
+//    }
 
+    public MysqlDriver(){
+        this.url = "jdbc:mysql://mn31.webd.pl:3306/wflek_eventbooker";
+        this.user = "wflek_eventbooker";
+        this.password = "lubieklopsy123";
+    }
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }
