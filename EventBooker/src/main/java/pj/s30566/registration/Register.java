@@ -1,5 +1,6 @@
 package pj.s30566.registration;
 import pj.s30566.model.User;
+import pj.s30566.utils.PasswordUtils;
 import pj.s30566.utils.mysql.UserDriver;
 import pj.s30566.utils.output.Wipe;
 
@@ -8,24 +9,12 @@ import java.util.Scanner;
 
 public class Register {
     UserDriver driver = new UserDriver();
-    private static final String INSERT_USER = "INSERT INTO Users (username, password, email, name, surname, phone) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String SELECT_USER_BY_USERNAME = "SELECT COUNT(*) FROM Users WHERE username = ?";
 
     public void addUser(){
-        String password;
         Scanner scanner = new Scanner(System.in);
-        Console console = System.console();
         System.out.println("Podaj nazwe uzytkownika");
         String username = scanner.nextLine();
-        if (console != null){
-            char[] passwordChars = console.readPassword("Podaj haslo: ");
-            password = String.valueOf(passwordChars);
-            java.util.Arrays.fill(passwordChars, ' ');
-        } else {
-            System.out.println("!!! KONSOLA NIE JEST DOSTEPNA, TWOJE HASLO BEDZIE WIDOCZNE !!! ");
-            System.out.println("Podaj haslo:");
-            password = scanner.nextLine();
-        }
+        String password = PasswordUtils.getPassword();
         System.out.println("Podaj adres email: ");
         String email = scanner.nextLine();
         System.out.println("Jak masz na imie? ");
