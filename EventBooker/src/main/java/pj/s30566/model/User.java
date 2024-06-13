@@ -1,5 +1,6 @@
 package pj.s30566.model;
 import pj.s30566.utils.PasswordUtils;
+import pj.s30566.utils.StringUtils;
 public class User {
     private int ID;
     private String login;
@@ -17,8 +18,8 @@ public class User {
         this.login = login;
         this.password = PasswordUtils.hashPassword(password);
         this.email = email;
-        this.name = name;
-        this.surname = surname;
+        this.name = StringUtils.capitalizeFirstLetter(name);
+        this.surname = StringUtils.capitalizeFirstLetter(surname);
         this.phone = phone;
     }
     public User(int ID, String login, String password, String email, String name, String surname, String phone){
