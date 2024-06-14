@@ -1,6 +1,10 @@
-package pj.s30566.model;
+package pj.s30566.model.user;
+import pj.s30566.enums.Roles;
 import pj.s30566.utils.PasswordUtils;
 import pj.s30566.utils.StringUtils;
+
+import javax.management.relation.Role;
+
 public class User {
     private int ID;
     private String login;
@@ -9,6 +13,7 @@ public class User {
     private String name;
     private String surname;
     private String phone;
+    private Roles permissionLevel;
 
     public User(){
 
@@ -21,6 +26,16 @@ public class User {
         this.name = StringUtils.capitalizeFirstLetter(name);
         this.surname = StringUtils.capitalizeFirstLetter(surname);
         this.phone = phone;
+        this.permissionLevel = Roles.CUSTOMER;
+    }
+    public User(String login, String password, String email, String name, String surname, String phone, Roles permissionLevel){
+        this.login = login;
+        this.password = PasswordUtils.hashPassword(password);
+        this.email = email;
+        this.name = StringUtils.capitalizeFirstLetter(name);
+        this.surname = StringUtils.capitalizeFirstLetter(surname);
+        this.phone = phone;
+        this.permissionLevel = permissionLevel;
     }
     public User(int ID, String login, String password, String email, String name, String surname, String phone){
         this.ID = ID;
@@ -30,6 +45,25 @@ public class User {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
+        this.permissionLevel = Roles.CUSTOMER;
+    }
+    public User(int ID, String login, String password, String email, String name, String surname, String phone, Roles permissionLevel){
+        this.ID = ID;
+        this.login = login;
+        this.password = PasswordUtils.hashPassword(password);
+        this.email = email;
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.permissionLevel = permissionLevel;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getLogin() {
@@ -78,6 +112,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Roles getPermissionLevel() {
+        return permissionLevel;
+    }
+
+    public void setPermissionLevel(Roles permissionLevel) {
+        this.permissionLevel = permissionLevel;
     }
 
     @Override
