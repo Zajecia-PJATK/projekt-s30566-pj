@@ -1,8 +1,8 @@
 package pj.s30566;
 import pj.s30566.layout.MainMenu;
 import pj.s30566.layout.Navigation;
-import pj.s30566.loginUtils.Login;
-import pj.s30566.registration.Register;
+import pj.s30566.utils.login.Login;
+import pj.s30566.utils.registration.Register;
 
 public class Main {
     public static void main(String[] args) {
