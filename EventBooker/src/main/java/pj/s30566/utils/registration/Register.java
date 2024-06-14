@@ -1,4 +1,4 @@
-package pj.s30566.registration;
+package pj.s30566.utils.registration;
 import pj.s30566.model.User;
 import pj.s30566.utils.PasswordUtils;
 import pj.s30566.utils.mysql.UserDriver;
