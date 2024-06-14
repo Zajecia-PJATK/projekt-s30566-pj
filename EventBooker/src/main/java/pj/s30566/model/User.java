@@ -80,5 +80,16 @@ public class User {
         this.phone = phone;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "ID=" + ID +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }
