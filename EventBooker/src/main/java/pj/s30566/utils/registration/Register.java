@@ -1,10 +1,9 @@
 package pj.s30566.utils.registration;
-import pj.s30566.model.User;
+import pj.s30566.model.user.User;
 import pj.s30566.utils.PasswordUtils;
 import pj.s30566.utils.mysql.UserDriver;
 import pj.s30566.utils.output.Wipe;
 
-import java.io.Console;
 import java.util.Scanner;
 
 public class Register {

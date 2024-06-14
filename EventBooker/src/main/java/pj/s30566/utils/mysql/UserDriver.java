@@ -1,5 +1,5 @@
 package pj.s30566.utils.mysql;
-import pj.s30566.model.User;
+import pj.s30566.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,7 +8,7 @@ import java.sql.*;
 public class UserDriver extends MysqlDriver {
     public User user;
     private static final Logger logger = LoggerFactory.getLogger(UserDriver.class);
-    private static final String INSERT_USERS_SQL = "INSERT INTO Users (username, password, email, name, surname, phone) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_USERS_SQL = "INSERT INTO Users (username, password, email, name, surname, phone, permission_level) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_USER_BY_LOGIN = "SELECT user_id, username, email, name, surname, phone FROM Users WHERE login = ?";
     private static final String GET_USER_PASSWORD_BY_LOGIN = "SELECT password FROM Users WHERE username = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Users";
@@ -28,6 +28,7 @@ public class UserDriver extends MysqlDriver {
             preparedStatement.setString(4, user.getName());
             preparedStatement.setString(5, user.getSurname());
             preparedStatement.setString(6, user.getPhone());
+            preparedStatement.setString(7, user.getPermissionLevel().name());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error("An error occurred while adding user {}", user.getLogin(), e);
