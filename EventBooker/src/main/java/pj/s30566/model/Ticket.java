@@ -1,5 +1,7 @@
 package pj.s30566.model;
 
+import pj.s30566.enums.TicketStatus;
+
 import java.time.LocalDateTime;
 
 public class Ticket {
@@ -8,10 +10,17 @@ public class Ticket {
     private int userId;
     private String seatNumber;
     private LocalDateTime purchaseDate;
-    private String status;
+    private TicketStatus status;
 
-    public Ticket(int ticketId, int eventId, int userId, String seatNumber, LocalDateTime purchaseDate, String status){
+    public Ticket(int ticketId, int eventId, int userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
         this.ticketId = ticketId;
+        this.eventId = eventId;
+        this.userId = userId;
+        this.seatNumber = seatNumber;
+        this.purchaseDate = purchaseDate;
+        this.status = status;
+    }
+    public Ticket(int eventId, int userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
         this.eventId = eventId;
         this.userId = userId;
         this.seatNumber = seatNumber;
@@ -59,11 +68,11 @@ public class Ticket {
         this.purchaseDate = purchaseDate;
     }
 
-    public String getStatus() {
+    public TicketStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TicketStatus status) {
         this.status = status;
     }
 
