@@ -14,9 +14,10 @@ public class Login {
         do {
             System.out.println("Podaj swoj login (pusta linia jesli chcesz wrocic): ");
             login = scanner.nextLine();
+            if (login.isEmpty()){ return -1;}
             passwd = PasswordUtils.getPassword();
             result = validate(login, passwd);
-            if (login.isEmpty() || passwd.isEmpty()){
+            if (passwd.isEmpty()){
                 return -1;
             }
         } while (result == 1);
