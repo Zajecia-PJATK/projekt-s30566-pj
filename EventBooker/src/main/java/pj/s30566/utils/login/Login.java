@@ -1,6 +1,5 @@
 package pj.s30566.utils.login;
 
-import pj.s30566.model.user.User;
 import pj.s30566.utils.PasswordUtils;
 import pj.s30566.utils.mysql.UserDriver;
 
