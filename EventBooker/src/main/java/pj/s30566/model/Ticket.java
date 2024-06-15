@@ -6,13 +6,13 @@ import java.time.LocalDateTime;
 
 public class Ticket {
     private int ticketId;
-    private int eventId;
-    private int userId;
+    private String eventId;
+    private String userId;
     private String seatNumber;
     private LocalDateTime purchaseDate;
     private TicketStatus status;
 
-    public Ticket(int ticketId, int eventId, int userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
+    public Ticket(int ticketId, String eventId, String userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
         this.ticketId = ticketId;
         this.eventId = eventId;
         this.userId = userId;
@@ -20,7 +20,7 @@ public class Ticket {
         this.purchaseDate = purchaseDate;
         this.status = status;
     }
-    public Ticket(int eventId, int userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
+    public Ticket(String eventId, String userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
         this.eventId = eventId;
         this.userId = userId;
         this.seatNumber = seatNumber;
@@ -36,19 +36,19 @@ public class Ticket {
         this.ticketId = ticketId;
     }
 
-    public int getEventId() {
+    public String  getEventId() {
         return eventId;
     }
 
-    public void setEventId(int eventId) {
+    public void setEventId(String eventId) {
         this.eventId = eventId;
     }
 
-    public int getUserId() {
+    public String  getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String  userId) {
         this.userId = userId;
     }
 
