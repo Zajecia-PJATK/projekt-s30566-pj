@@ -5,6 +5,7 @@ import pj.s30566.enums.TicketStatus;
 import java.time.LocalDateTime;
 
 public class Ticket {
+    private String eventName;
     private int ticketId;
     private String eventId;
     private String userId;
@@ -12,7 +13,8 @@ public class Ticket {
     private LocalDateTime purchaseDate;
     private TicketStatus status;
 
-    public Ticket(int ticketId, String eventId, String userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
+    public Ticket( Event event, int ticketId, String eventId, String userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
+        this.eventName = event.getEventName();
         this.ticketId = ticketId;
         this.eventId = eventId;
         this.userId = userId;
@@ -20,7 +22,8 @@ public class Ticket {
         this.purchaseDate = purchaseDate;
         this.status = status;
     }
-    public Ticket(String eventId, String userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
+    public Ticket( Event event ,String eventId, String userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
+        this.eventName = event.getEventName();
         this.eventId = eventId;
         this.userId = userId;
         this.seatNumber = seatNumber;

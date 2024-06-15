@@ -7,28 +7,31 @@ import java.time.LocalDateTime;
 public class Event {
     private int eventId;
     private int ticketId;
-    private int userId;
+    private int organizerId;
     private int locationId;
     private int venueId;
-    private String seatNumber;
+    private String eventName;
+    private int seatNumber;
     private LocalDateTime scheduledDate;
     private EventStatus status;
 
-    public Event(int eventId, int ticketId, int userId, int locationId, int venueId, String seatNumber, LocalDateTime scheduledDate, EventStatus status){
+    public Event(int eventId, int ticketId, int organizerId, int locationId, int venueId, String eventName, int seatNumber, LocalDateTime scheduledDate, EventStatus status){
         this.eventId = eventId;
         this.ticketId = ticketId;
-        this.userId = userId;
+        this.organizerId = organizerId;
         this.locationId = locationId;
         this.venueId = venueId;
+        this.eventName = eventName;
         this.seatNumber = seatNumber;
         this.scheduledDate = scheduledDate;
         this.status = status;
     }
-    public Event(int ticketId, int userId, int locationId, int venueId, String seatNumber, LocalDateTime scheduledDate, EventStatus status){
+    public Event(int ticketId, int organizerId, int locationId, int venueId, String eventName, int seatNumber, LocalDateTime scheduledDate, EventStatus status){
         this.ticketId = ticketId;
-        this.userId = userId;
+        this.organizerId = organizerId;
         this.locationId = locationId;
         this.venueId = venueId;
+        this.eventName = eventName;
         this.seatNumber = seatNumber;
         this.scheduledDate = scheduledDate;
         this.status = status;
@@ -50,12 +53,12 @@ public class Event {
         this.ticketId = ticketId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getOrganizerId() {
+        return organizerId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setOrganizerId(int organizerId) {
+        this.organizerId = organizerId;
     }
 
     public int getLocationId() {
@@ -74,11 +77,11 @@ public class Event {
         this.venueId = venueId;
     }
 
-    public String getSeatNumber() {
+    public int getSeatNumber() {
         return seatNumber;
     }
 
-    public void setSeatNumber(String seatNumber) {
+    public void setSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
     }
 
@@ -96,5 +99,13 @@ public class Event {
 
     public void setStatus(EventStatus status) {
         this.status = status;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 }

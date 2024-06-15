@@ -40,6 +40,9 @@ public class GreetMenu implements Navigation {
             case 2:
                 Register register = new Register();
                 register.addUser();
+                break;
+            case 3:
+
         }
     }
 }
