@@ -23,12 +23,12 @@ public class Register {
         String surname = scanner.nextLine();
         String phone;
         int numberLength;
-        int count = 0;
+        boolean isFirstIteration = true;
         do {
-            if (count > 0){
+            if (!isFirstIteration){
                 System.out.println("Numer telefonu musi miec 9 cyfr!");
             }
-            count++;
+            isFirstIteration = false;
             System.out.println("Podaj numer telefonu");
             phone = scanner.nextLine();
             numberLength = phone.length();
