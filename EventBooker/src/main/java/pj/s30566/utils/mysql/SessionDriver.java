@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class SessionDriver extends MysqlDriver{
     private static final Logger logger = LoggerFactory.getLogger(SessionDriver.class);
     private static final String INSERT_SESSION_SQL = "INSERT INTO Sessions (system_username, app_username, system_mac, time,) VALUES (?, ?, ?, ?)";
-    private static final String DELETE_OLD_SESSIONS_SQL = "DELETE FROM Sessions WHERE last_activity < NOW() - INTERVAL 1 DAY";
+    private static final String DELETE_OLD_SESSIONS_SQL = "DELETE FROM Sessions WHERE last_activity < NOW() - INTERVAL = 1 DAY";
     private static final String SELECT_SESSION = "SELECT session_id FROM Sessions WHERE system_mac = ?";
 
     public void insertSession(Session session) {

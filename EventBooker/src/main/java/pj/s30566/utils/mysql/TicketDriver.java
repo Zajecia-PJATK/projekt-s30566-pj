@@ -2,15 +2,14 @@ package pj.s30566.utils.mysql;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pj.s30566.model.Location;
 import pj.s30566.model.Ticket;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class TicketDriver extends MysqlDriver {
-    private static final Logger logger = LoggerFactory.getLogger(LocationDriver.class);
-    private static String INSERT_TICKET_SQL = "INSERT INTO Locations (event_id, user_id, seat_number, purchase_date, status) VALUES (?, ?, ?, ?, ?)";
+    private static final Logger logger = LoggerFactory.getLogger(TicketDriver.class);
+    private static String INSERT_TICKET_SQL = "INSERT INTO Tickets (event_id, user_id, seat_number, purchase_date, status) VALUES (?, ?, ?, ?, ?)";
     public TicketDriver(){
 
     }
