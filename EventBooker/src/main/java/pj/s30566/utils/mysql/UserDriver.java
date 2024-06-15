@@ -2,14 +2,15 @@ package pj.s30566.utils.mysql;
 import pj.s30566.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pj.s30566.enums.Roles;
 
 import java.sql.*;
 
 public class UserDriver extends MysqlDriver {
     public User user;
     private static final Logger logger = LoggerFactory.getLogger(UserDriver.class);
-    private static final String INSERT_USERS_SQL = "INSERT INTO Users (username, password, email, name, surname, phone, permission_level) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String SELECT_USER_BY_LOGIN = "SELECT user_id, username, email, name, surname, phone FROM Users WHERE login = ?";
+    private static final String INSERT_USERS_SQL = "INSERT INTO Users (username, password, email, name, surname, phone, permission_level) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String SELECT_USER_BY_LOGIN = "SELECT user_id, username, password, email, name, surname, phone, permission_level FROM Users WHERE login = ?";
     private static final String GET_USER_PASSWORD_BY_LOGIN = "SELECT password FROM Users WHERE username = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Users";
     private static final String GET_LOGIN_COUNT = "SELECT count(*) FROM Users WHERE username = ?";
@@ -20,7 +21,7 @@ public class UserDriver extends MysqlDriver {
 
     }
 
-    public void insertUser(User user) {
+    public int insertUser(User user) {
         try (Connection connection = super.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)){
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
@@ -32,7 +33,9 @@ public class UserDriver extends MysqlDriver {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error("An error occurred while adding user {}", user.getLogin(), e);
+            return -1;
         }
+        return 0;
     }
 
     public int loginCount(User user) {
@@ -62,6 +65,33 @@ public class UserDriver extends MysqlDriver {
             logger.error("An error occurred while getting user password {}", login, e);
             return "error";
         }
+
+    }
+
+    public User getUser(String username){
+        User user = null;
+        try (Connection connection = super.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_LOGIN)) {
+            preparedStatement.setString(1, username);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                int userId = result.getInt("user_id");
+                String password = result.getString("password");
+                String email = result.getString("email");
+                String name = result.getString("name");
+                String surname = result.getString("surname");
+                String phone = result.getString("phone");
+                Roles role = Roles.valueOf(result.getString("permission_level"));
+                user = new User(userId, username, password, email, name, surname, phone, role);
+            } else {
+                logger.error("Nie znaleziono uzytkownika");
+                return null;
+            }
+        } catch (SQLException e) {
+            logger.error("An error occurred while getting user {}", username, e);
+            return null;
+        }
+
+        return user;
 
     }
 
