@@ -1,4 +1,5 @@
 package pj.s30566.utils.registration;
+import pj.s30566.Main;
 import pj.s30566.model.user.User;
 import pj.s30566.utils.PasswordUtils;
 import pj.s30566.utils.mysql.UserDriver;
@@ -22,7 +23,12 @@ public class Register {
         String surname = scanner.nextLine();
         String phone;
         int numberLength;
+        int count = 0;
         do {
+            if (count > 0){
+                System.out.println("Numer telefonu musi miec 9 cyfr!");
+            }
+            count++;
             System.out.println("Podaj numer telefonu");
             phone = scanner.nextLine();
             numberLength = phone.length();
@@ -37,6 +43,9 @@ public class Register {
         } else {
             System.out.println("Wystapił blad. Nie dodano uzytkownika.");
         }
+
+        String[] args = {};
+        Main.main(args);
     }
 
     public int registerUser(User user){

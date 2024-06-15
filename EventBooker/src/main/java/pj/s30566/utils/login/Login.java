@@ -1,25 +1,24 @@
 package pj.s30566.utils.login;
 
+import pj.s30566.model.user.User;
 import pj.s30566.utils.PasswordUtils;
 import pj.s30566.utils.mysql.UserDriver;
 
 import java.util.Scanner;
 
 public class Login {
+    String login;
+    String passwd;
     private final Scanner scanner = new Scanner(System.in);
     public int login(){
-        String login;
-        String passwd;
         int result;
         do {
             System.out.println("Podaj swoj login (pusta linia jesli chcesz wrocic): ");
-            login = scanner.nextLine();
+            this.login = scanner.nextLine();
             if (login.isEmpty()){ return -1;}
-            passwd = PasswordUtils.getPassword();
+            this.passwd = PasswordUtils.getPassword();
             result = validate(login, passwd);
-            if (passwd.isEmpty()){
-                return -1;
-            }
+            if (passwd.isEmpty()){return -1;}
         } while (result == 1);
         return 0;
     }
@@ -36,5 +35,13 @@ public class Login {
             return 1;
         }
 
+    }
+
+    public String getLogin(){
+        return login;
+    }
+
+    public String getPasswd(){
+        return passwd;
     }
 }
