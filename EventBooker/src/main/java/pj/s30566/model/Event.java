@@ -1,6 +1,7 @@
 package pj.s30566.model;
 
 import pj.s30566.enums.EventStatus;
+import pj.s30566.enums.EventType;
 
 import java.time.LocalDateTime;
 
@@ -14,8 +15,21 @@ public class Event {
     private int seatNumber;
     private LocalDateTime scheduledDate;
     private EventStatus status;
+    private EventType eventType;
 
-    public Event(int eventId, int ticketId, int organizerId, int locationId, int venueId, String eventName, int seatNumber, LocalDateTime scheduledDate, EventStatus status){
+    public Event(int ticketId, int organizerId, int locationId, int venueId, String eventName, int seatNumber, LocalDateTime scheduledDate, EventStatus status, EventType eventType){
+        this.ticketId = ticketId;
+        this.organizerId = organizerId;
+        this.locationId = locationId;
+        this.venueId = venueId;
+        this.eventName = eventName;
+        this.seatNumber = seatNumber;
+        this.scheduledDate = scheduledDate;
+        this.status = status;
+        this.eventType = eventType;
+    }
+
+    public Event(int eventId, int ticketId, int organizerId, int locationId, int venueId, String eventName, int seatNumber, LocalDateTime time, EventStatus status, EventType type) {
         this.eventId = eventId;
         this.ticketId = ticketId;
         this.organizerId = organizerId;
@@ -23,18 +37,9 @@ public class Event {
         this.venueId = venueId;
         this.eventName = eventName;
         this.seatNumber = seatNumber;
-        this.scheduledDate = scheduledDate;
+        this.scheduledDate = time;
         this.status = status;
-    }
-    public Event(int ticketId, int organizerId, int locationId, int venueId, String eventName, int seatNumber, LocalDateTime scheduledDate, EventStatus status){
-        this.ticketId = ticketId;
-        this.organizerId = organizerId;
-        this.locationId = locationId;
-        this.venueId = venueId;
-        this.eventName = eventName;
-        this.seatNumber = seatNumber;
-        this.scheduledDate = scheduledDate;
-        this.status = status;
+        this.eventType = type;
     }
 
     public int getEventId() {
@@ -107,5 +112,13 @@ public class Event {
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    public EventType getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(EventType eventType) {
+        this.eventType = eventType;
     }
 }

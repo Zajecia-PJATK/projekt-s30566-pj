@@ -9,4 +9,7 @@ public class FormatDT {
     public String format(LocalDateTime time){
         return time.format(formatter);
     }
+    public LocalDateTime getLocalDateTime(String time) {
+        return LocalDateTime.parse(time, formatter);
+    }
 }
