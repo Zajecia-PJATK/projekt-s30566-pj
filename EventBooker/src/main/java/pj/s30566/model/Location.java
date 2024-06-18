@@ -103,13 +103,21 @@ public class Location {
 
     public static class Venue{
         private int venueId;
+        private int location_id;
         private String venueName;
         private int capacity;
 
-        public Venue(int venueId, String venueName, int capacity){
+        public Venue(int venueId, int location_id, String venueName, int capacity){
             this.venueId = venueId;
+            this.location_id = location_id;
             this.venueName = venueName;
             this.capacity = capacity;
+        }
+        public Venue (int location_id, String venueName, int capacity){
+            this.location_id = location_id;
+            this.venueName = venueName;
+            this.capacity = capacity;
+
         }
 
         public int getVenueId() {
@@ -143,6 +151,14 @@ public class Location {
                     ", venueName='" + venueName + '\'' +
                     ", capacity=" + capacity +
                     '}';
+        }
+
+        public int getLocation_id() {
+            return location_id;
+        }
+
+        public void setLocation_id(int location_id) {
+            this.location_id = location_id;
         }
     }
 }
