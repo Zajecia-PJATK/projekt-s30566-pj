@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public class Event {
     private int eventId;
-    private int ticketId;
+    private double ticketPrice;
     private int organizerId;
     private int locationId;
     private int venueId;
@@ -17,8 +17,8 @@ public class Event {
     private EventStatus status;
     private EventType eventType;
 
-    public Event(int ticketId, int organizerId, int locationId, int venueId, String eventName, int seatNumber, LocalDateTime scheduledDate, EventStatus status, EventType eventType){
-        this.ticketId = ticketId;
+    public Event(double ticketPrice, int organizerId, int locationId, int venueId, String eventName, int seatNumber, LocalDateTime scheduledDate, EventStatus status, EventType eventType){
+        this.ticketPrice = ticketPrice;
         this.organizerId = organizerId;
         this.locationId = locationId;
         this.venueId = venueId;
@@ -29,9 +29,9 @@ public class Event {
         this.eventType = eventType;
     }
 
-    public Event(int eventId, int ticketId, int organizerId, int locationId, int venueId, String eventName, int seatNumber, LocalDateTime time, EventStatus status, EventType type) {
+    public Event(int eventId, double ticketPrice, int organizerId, int locationId, int venueId, String eventName, int seatNumber, LocalDateTime time, EventStatus status, EventType type) {
         this.eventId = eventId;
-        this.ticketId = ticketId;
+        this.ticketPrice = ticketPrice;
         this.organizerId = organizerId;
         this.locationId = locationId;
         this.venueId = venueId;
@@ -50,12 +50,12 @@ public class Event {
         this.eventId = eventId;
     }
 
-    public int getTicketId() {
-        return ticketId;
+    public double getTicketPrice() {
+        return ticketPrice;
     }
 
-    public void setTicketId(int ticketId) {
-        this.ticketId = ticketId;
+    public void setTicketPrice(double ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 
     public int getOrganizerId() {

@@ -5,30 +5,34 @@ import pj.s30566.enums.TicketStatus;
 import java.time.LocalDateTime;
 
 public class Ticket {
-    private String eventName;
     private int ticketId;
-    private String eventId;
-    private String userId;
-    private String seatNumber;
+    private int eventId;
+    private int userId;
+    private int seatNumber;
+    private String eventName;
     private LocalDateTime purchaseDate;
     private TicketStatus status;
+    private double ticketPrice;
 
-    public Ticket( Event event, int ticketId, String eventId, String userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
-        this.eventName = event.getEventName();
+    public Ticket(int ticketId, int eventId, int userId, int seatNumber, String eventName, LocalDateTime purchaseDate, TicketStatus status, double ticketPrice){
         this.ticketId = ticketId;
         this.eventId = eventId;
         this.userId = userId;
         this.seatNumber = seatNumber;
+        this.eventName = eventName;
         this.purchaseDate = purchaseDate;
         this.status = status;
+        this.ticketPrice = ticketPrice;
     }
-    public Ticket( Event event ,String eventId, String userId, String seatNumber, LocalDateTime purchaseDate, TicketStatus status){
-        this.eventName = event.getEventName();
+    public Ticket( int eventId, int userId, int seatNumber, String eventName, LocalDateTime purchaseDate, TicketStatus status, double ticketPrice){
         this.eventId = eventId;
         this.userId = userId;
         this.seatNumber = seatNumber;
+        this.eventName = eventName;
         this.purchaseDate = purchaseDate;
         this.status = status;
+        this.ticketPrice = ticketPrice;
+
     }
 
     public int getTicketId() {
@@ -39,28 +43,36 @@ public class Ticket {
         this.ticketId = ticketId;
     }
 
-    public String  getEventId() {
+    public int getEventId() {
         return eventId;
     }
 
-    public void setEventId(String eventId) {
+    public void setEventId(int eventId) {
         this.eventId = eventId;
     }
 
-    public String  getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String  userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public String getSeatNumber() {
+    public int getSeatNumber() {
         return seatNumber;
     }
 
-    public void setSeatNumber(String seatNumber) {
+    public void setSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     public LocalDateTime getPurchaseDate() {
@@ -89,5 +101,13 @@ public class Ticket {
                 ", purchaseDate=" + purchaseDate +
                 ", status='" + status + '\'' +
                 '}';
+    }
+
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(double ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 }
