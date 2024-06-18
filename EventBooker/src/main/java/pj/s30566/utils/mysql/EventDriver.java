@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,6 @@ public class EventDriver extends MysqlDriver {
     private String CHANGE_EVENT_STATUS = "UPDATE Events SET status = ? WHERE event_id = ?";
     private String CHANGE_EVENT_TIME = "UPDATE Events SET event_date = ? WHERE event_id = ?";
     private String SELECT_ALL_EVENTS = "SELECT * FROM Events";
-    private FormatDT formatter;
 
     public void addEvent(Event event){
         try (PreparedStatement preparedStatement = super.getConnection().prepareStatement(ADD_EVENT_SQL)){
@@ -30,7 +30,8 @@ public class EventDriver extends MysqlDriver {
             preparedStatement.setString(2, event.getEventType().name());
             preparedStatement.setInt(3, event.getLocationId());
             preparedStatement.setInt(4, event.getOrganizerId());
-            preparedStatement.setString(5, formatter.format(event.getScheduledDate()));
+            LocalDateTime time = event.getScheduledDate();
+            preparedStatement.setString(5, time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             preparedStatement.setInt(6, event.getSeatNumber());
             preparedStatement.setString(7, event.getStatus().name());
             preparedStatement.setDouble(8, event.getTicketPrice());
@@ -60,7 +61,8 @@ public class EventDriver extends MysqlDriver {
                 type = EventType.valueOf(result.getString("event_type"));
                 locationId = result.getInt("location_id");
                 organizerId = result.getInt("organizer_id");
-                time = formatter.getLocalDateTime(result.getString("scheduled_date"));
+                String timeString = result.getString("scheduled_date");
+                time = LocalDateTime.parse(timeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
                 seatNumber = result.getInt("seat_number");
                 status = EventStatus.valueOf(result.getString("status"));
                 ticketPrice = result.getDouble("ticket_price");
@@ -93,14 +95,14 @@ public class EventDriver extends MysqlDriver {
 
     public void changeEventTime(LocalDateTime time, Event event){
         try (PreparedStatement preparedStatement = super.getConnection().prepareStatement(CHANGE_EVENT_TIME)){
-            preparedStatement.setString(1, formatter.format(time));
+            preparedStatement.setString(1, time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             preparedStatement.setInt(2, event.getEventId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error("An error occurred while changing event date {}", event.getEventName(), e);
         }
 
-        System.out.println("Zmieniono czas eventu na " + formatter.format(time));
+        System.out.println("Zmieniono czas eventu na " + time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
     }
 
@@ -125,7 +127,8 @@ public class EventDriver extends MysqlDriver {
                 type = EventType.valueOf(result.getString("event_type"));
                 locationId = result.getInt("location_id");
                 organizerId = result.getInt("organizer_id");
-                time = formatter.getLocalDateTime(result.getString("scheduled_date"));
+                String timeString = result.getString("scheduled_date");
+                time = LocalDateTime.parse(timeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
                 seatNumber = result.getInt("seat_number");
                 status = EventStatus.valueOf(result.getString("status"));
                 ticketPrice = result.getDouble("ticket_price");
