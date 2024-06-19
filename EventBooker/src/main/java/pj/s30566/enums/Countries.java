@@ -6,7 +6,7 @@ public enum Countries {
     BULGARIA,
     CROATIA,
     CYPRUS,
-    CZECH_REPUBLIC,
+    CZECHIA,
     DENMARK,
     ESTONIA,
     FINLAND,
