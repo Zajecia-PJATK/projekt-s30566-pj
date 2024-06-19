@@ -5,7 +5,7 @@ import pj.s30566.utils.output.Wipe;
 
 import java.util.Scanner;
 
-public class AdminMenu {
+public class AdminMenu implements Navigation {
     private final Scanner scanner = new Scanner(System.in);
     public void displayMenu(User user){
         Wipe.wipe();
