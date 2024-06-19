@@ -12,8 +12,9 @@ public class Location {
     private String address;
     private String postalCode;
     private Countries country;
+    private int userId;
     private ArrayList<Venue> venues;
-    public Location(int locationID, String locationName, String city, String address, String postalCode, Countries country){
+    public Location(int locationID, String locationName, String city, String address, String postalCode, Countries country, int userId){
         this.locationID = locationID;
         this.locationName = locationName;
         this.city = city;
@@ -21,15 +22,17 @@ public class Location {
         this.postalCode = postalCode;
         this.country = country;
         this.venues = new ArrayList<>();
+        this.userId = userId;
     }
 
-    public Location(String locationName, String city, String address, String postalCode, Countries country){
+    public Location(String locationName, String city, String address, String postalCode, Countries country, int userId){
         this.locationName = locationName;
         this.city = city;
         this.address = address;
         this.postalCode = postalCode;
         this.country = country;
         this.venues = new ArrayList<>();
+        this.userId = userId;
     }
 
     public int getLocationID() {
@@ -99,6 +102,14 @@ public class Location {
                 ", country='" + country + '\'' +
                 ", venues=" + venues +
                 '}';
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public static class Venue{

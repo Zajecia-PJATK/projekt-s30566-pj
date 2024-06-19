@@ -12,12 +12,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pj.s30566.model.user.User;
 
 public class LocationDriver extends MysqlDriver {
     private static final Logger logger = LoggerFactory.getLogger(LocationDriver.class);
-    private static final String INSERT_LOCATION_SQL = "INSERT INTO Locations (address, city, country, location_name, postal_code) VALUES (?, ?, ?, ?, ?)";
+    private static final String INSERT_LOCATION_SQL = "INSERT INTO Locations (address, city, country, location_name, postal_code, user_id) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String INSERT_VENUE_SQL = "INSERT INTO Venues (capacity, location_id, venue_name) VALUES (?, ?, ?)";
     private static final String GET_LOCATION_SQL = "SELECT * FROM Locations WHERE location_name = ?";
+    private static final String GET_VENUE_BY_LOCATION_ID = "SELECT * FROM Venues WHERE location_id = ?";
 
     public LocationDriver(){
 
@@ -30,6 +32,7 @@ public class LocationDriver extends MysqlDriver {
             preparedStatement.setString(3, location.getCountry().name());
             preparedStatement.setString(4, location.getLocationName());
             preparedStatement.setString(5, location.getPostalCode());
+            preparedStatement.setInt(6, location.getUserId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error("An error occurred while adding location {}", location.getLocationName(), e);
@@ -54,6 +57,7 @@ public class LocationDriver extends MysqlDriver {
         Countries country;
         String postalCode;
         Location location;
+        int userId;
         try (PreparedStatement preparedStatement = super.getConnection().prepareStatement(GET_LOCATION_SQL)){
             preparedStatement.setString(1, name);
             ResultSet result = preparedStatement.executeQuery();
@@ -63,8 +67,10 @@ public class LocationDriver extends MysqlDriver {
                 city = result.getString("city");
                 country = Countries.valueOf(result.getString("country")) ;
                 postalCode = result.getString("postal_code");
+                userId = result.getInt("user_id");
 
-                location = new Location(locationId, name, city, locationAddress, postalCode, country);
+
+                location = new Location(locationId, name, city, locationAddress, postalCode, country, userId);
             } else {
                 return null;
             }
@@ -75,6 +81,30 @@ public class LocationDriver extends MysqlDriver {
         return location;
     }
 
+    public Location.Venue getVenuesByLocationID(int locationId){
+        int capacity;
+        int venueId;
+        String venueName;
+        Location.Venue venue;
+        try (PreparedStatement preparedStatement = super.getConnection().prepareStatement(GET_VENUE_BY_LOCATION_ID)){
+            preparedStatement.setInt(1, locationId);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()){
+                capacity = result.getInt("capacity");
+                venueId = result.getInt("address");
+                venueName = result.getString("city");
+
+                venue = new Location.Venue(venueId, locationId, venueName, capacity);
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            logger.error("An error occurred while getting venue ", e);
+            return null;
+        }
+        return venue;
+
+    }
 
 }
 
