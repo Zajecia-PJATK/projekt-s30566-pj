@@ -88,7 +88,7 @@ public class LocationManager {
         return chosenCountry;
     }
 
-    public Location.Venue addNewVenue(Location location) throws SQLException{
+    public void addNewVenue(Location location) throws SQLException{
         Wipe.wipe();
         System.out.println("=== Twoja lokacja wymaga przynajmniej 1 sali ===");
         System.out.println("Podaj nazwe sali:");
@@ -103,10 +103,7 @@ public class LocationManager {
             locationDriver.addVenue(venue);
         } catch (SQLException e){
             logger.error("An error occurred while adding venue {}", venue.getVenueName(), e);
-            return null;
         }
-        venue = locationDriver.getVenuesByLocationID(location.getLocationID());
-        return venue;
 
     }
 }
