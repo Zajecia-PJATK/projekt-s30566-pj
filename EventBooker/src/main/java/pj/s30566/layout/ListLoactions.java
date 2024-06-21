@@ -1,9 +1,7 @@
 package pj.s30566.layout;
 
-import pj.s30566.model.Event;
 import pj.s30566.model.Location;
 import pj.s30566.model.user.User;
-import pj.s30566.utils.mysql.EventDriver;
 import pj.s30566.utils.mysql.LocationDriver;
 
 import java.io.Console;

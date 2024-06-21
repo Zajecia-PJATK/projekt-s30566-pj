@@ -2,7 +2,6 @@ package pj.s30566.model;
 
 import pj.s30566.enums.Countries;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Location {

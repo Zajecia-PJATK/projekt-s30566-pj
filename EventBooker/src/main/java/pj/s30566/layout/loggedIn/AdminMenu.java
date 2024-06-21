@@ -2,7 +2,6 @@ package pj.s30566.layout.loggedIn;
 
 import pj.s30566.layout.ListEvents;
 import pj.s30566.model.user.User;
-import pj.s30566.utils.event.EventManager;
 import pj.s30566.utils.output.Wipe;
 
 import java.util.Scanner;
