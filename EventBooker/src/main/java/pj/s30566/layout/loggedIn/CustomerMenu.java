@@ -30,6 +30,8 @@ public class CustomerMenu implements Navigation {
     public void executeOption(int choice, User user){
 
         switch (choice) {
+            case 0:
+                return;
             case 1:
                 final ListEvents listEvents = new ListEvents();
                 listEvents.listEvents();

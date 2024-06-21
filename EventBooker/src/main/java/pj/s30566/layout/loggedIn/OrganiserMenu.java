@@ -59,7 +59,7 @@ public class OrganiserMenu implements Navigation {
                 Wipe.wipe();
                 displayMenu(user);
             case 0:
-                break;
+                return;
         }
 
     }
