@@ -16,6 +16,9 @@ public class CustomerMenu implements Navigation {
         System.out.println("1. Przegladaj nadchodzace wydarzenia");
         System.out.println("0. Wyloguj sie");
 
+        int choice = getUserChoice();
+        executeOption(choice, user);
+
 
     }
 
@@ -25,7 +28,7 @@ public class CustomerMenu implements Navigation {
         return choice;
     }
 
-    public void executeOption(int choice){
+    public void executeOption(int choice, User user){
 
         switch (choice) {
             case 1:
