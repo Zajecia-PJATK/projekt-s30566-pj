@@ -1,6 +1,8 @@
 package pj.s30566.layout.loggedIn;
 
+import pj.s30566.layout.ListEvents;
 import pj.s30566.model.user.User;
+import pj.s30566.utils.event.EventManager;
 import pj.s30566.utils.output.Wipe;
 
 import java.util.Scanner;
@@ -15,6 +17,9 @@ public class AdminMenu implements Navigation {
         System.out.println("1. Przegladaj nadchodzace wydarzenia");
         System.out.println("0. Wyloguj sie");
 
+        int choice = getUserChoice();
+        executeOption(choice, user);
+
 
     }
 
@@ -24,7 +29,12 @@ public class AdminMenu implements Navigation {
         return choice;
     }
 
-    public void executeOption(int choice){
+    public void executeOption(int choice, User user){
+        switch (choice) {
+            case 1:
+                final ListEvents listEvents = new ListEvents();
+                listEvents.listEvents();
+        }
 
 
     }
