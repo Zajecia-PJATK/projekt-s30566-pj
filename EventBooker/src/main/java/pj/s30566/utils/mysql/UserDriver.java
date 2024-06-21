@@ -10,7 +10,7 @@ public class UserDriver extends MysqlDriver {
     public User user;
     private static final Logger logger = LoggerFactory.getLogger(UserDriver.class);
     private static final String INSERT_USERS_SQL = "INSERT INTO Users (username, password, email, name, surname, phone, permission_level) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private static final String SELECT_USER_BY_LOGIN = "SELECT user_id, username, password, email, name, surname, phone, permission_level FROM Users WHERE login = ?";
+    private static final String SELECT_USER_BY_LOGIN = "SELECT user_id, username, password, email, name, surname, phone, permission_level FROM Users WHERE username = ?";
     private static final String GET_USER_PASSWORD_BY_LOGIN = "SELECT password FROM Users WHERE username = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM Users";
     private static final String GET_LOGIN_COUNT = "SELECT count(*) FROM Users WHERE username = ?";
