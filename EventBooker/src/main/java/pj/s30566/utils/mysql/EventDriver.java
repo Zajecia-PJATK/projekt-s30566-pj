@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import pj.s30566.enums.EventStatus;
 import pj.s30566.enums.EventType;
 import pj.s30566.model.Event;
-import pj.s30566.utils.FormatDT;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -2,10 +2,7 @@ package pj.s30566.utils.mysql;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pj.s30566.enums.EventStatus;
-import pj.s30566.enums.EventType;
 import pj.s30566.enums.TicketStatus;
-import pj.s30566.model.Event;
 import pj.s30566.model.Ticket;
 import pj.s30566.utils.FormatDT;
 
