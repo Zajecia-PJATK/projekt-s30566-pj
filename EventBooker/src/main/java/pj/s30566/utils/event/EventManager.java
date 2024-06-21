@@ -81,7 +81,7 @@ public class EventManager {
                 System.out.println();
             }
 
-            System.out.println("Wybierz kraj, podajac jego numer: ");
+            System.out.println("Wybierz typ wydarzenia, podajac jego numer: ");
             int choice = scanner.nextInt();
 
 
