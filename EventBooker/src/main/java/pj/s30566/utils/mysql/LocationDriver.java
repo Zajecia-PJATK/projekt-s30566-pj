@@ -126,8 +126,8 @@ public class LocationDriver extends MysqlDriver {
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()){
                 capacity = result.getInt("capacity");
-                venueId = result.getInt("address");
-                venueName = result.getString("city");
+                venueId = result.getInt("venue_id");
+                venueName = result.getString("venue_name");
 
                 Location.Venue venue = new Location.Venue(venueId, locationId, venueName, capacity);
                 venues.add(venue);
