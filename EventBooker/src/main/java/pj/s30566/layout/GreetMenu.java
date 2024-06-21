@@ -6,18 +6,12 @@ import pj.s30566.layout.loggedIn.AdminMenu;
 import pj.s30566.layout.loggedIn.CustomerMenu;
 import pj.s30566.layout.loggedIn.Navigation;
 import pj.s30566.layout.loggedIn.OrganiserMenu;
-import pj.s30566.model.Event;
-import pj.s30566.model.user.Admin;
 import pj.s30566.model.user.User;
 import pj.s30566.utils.login.Login;
-import pj.s30566.utils.mysql.EventDriver;
 import pj.s30566.utils.mysql.UserDriver;
 import pj.s30566.utils.registration.Register;
 
-import java.io.Console;
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.List;
 
 public class GreetMenu {
     private final Scanner scanner = new Scanner(System.in);

@@ -1,17 +1,12 @@
 package pj.s30566.utils.mysql;
 
 import pj.s30566.enums.Countries;
-import pj.s30566.enums.EventStatus;
-import pj.s30566.enums.EventType;
-import pj.s30566.model.Event;
+
 import pj.s30566.model.Location;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 

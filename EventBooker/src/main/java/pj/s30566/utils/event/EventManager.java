@@ -1,6 +1,5 @@
 package pj.s30566.utils.event;
 
-import pj.s30566.enums.Countries;
 import pj.s30566.enums.EventStatus;
 import pj.s30566.enums.EventType;
 import pj.s30566.layout.ListLoactions;
@@ -14,8 +13,6 @@ import pj.s30566.utils.output.Wipe;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
