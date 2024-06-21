@@ -24,7 +24,6 @@ public class CustomerMenu implements Navigation {
 
     public int getUserChoice(){
         int choice = scanner.nextInt();
-        scanner.nextLine();
         return choice;
     }
 
@@ -34,7 +33,10 @@ public class CustomerMenu implements Navigation {
             case 1:
                 final ListEvents listEvents = new ListEvents();
                 listEvents.listEvents();
+                Wipe.wipe();
+                displayMenu(user);
         }
+
 
 
     }

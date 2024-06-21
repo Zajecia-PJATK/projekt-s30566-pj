@@ -25,15 +25,19 @@ public class AdminMenu implements Navigation {
 
     public int getUserChoice(){
         int choice = scanner.nextInt();
-        scanner.nextLine();
         return choice;
     }
 
     public void executeOption(int choice, User user){
         switch (choice) {
+            case 0:
+                break;
             case 1:
                 final ListEvents listEvents = new ListEvents();
                 listEvents.listEvents();
+                Wipe.wipe();
+                displayMenu(user);
+
         }
 
 

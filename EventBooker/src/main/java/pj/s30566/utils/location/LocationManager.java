@@ -15,7 +15,7 @@ public class LocationManager {
     private final Scanner scanner = new Scanner(System.in);
     private static final Logger logger = LoggerFactory.getLogger(LocationManager.class);
 
-    public Location addNewLocation(User user) throws SQLException {
+    public Location addNewLocation(User user) {
         Wipe.wipe();
         System.out.println("=== Nowa Lokacja ===");
         System.out.println();
@@ -25,17 +25,19 @@ public class LocationManager {
         Wipe.wipe();
         System.out.println("Wybrano kraj: " + country.name());
         System.out.println("Podaj nazwe miasta: ");
+        scanner.nextLine(); //bez tego pomijane jest pobieranie nazwy miasta
         String city = scanner.nextLine();
         System.out.println("Podaj adres (Ulica, numer budynku/mieszkania): ");
         String address = scanner.nextLine();
         System.out.println("Podaj kod pocztowy: ");
         String postalCode = scanner.nextLine();
 
+
         Location location = new Location(locationName, city, address, postalCode, country, user.getID());
         LocationDriver locationDriver = new LocationDriver();
         Location finalLocation = locationDriver.getLocationByName(locationName);
         if (finalLocation != null){
-            System.out.println("Taka lokalizacja juz istnieje");
+            System.out.println("Taka lokacja juz istnieje");
             return null;
         }
         try {
@@ -46,6 +48,7 @@ public class LocationManager {
         }
 
         finalLocation = locationDriver.getLocationByName(locationName);
+        addNewVenue(finalLocation, 1);
         return finalLocation;
     }
 
@@ -88,9 +91,11 @@ public class LocationManager {
         return chosenCountry;
     }
 
-    public void addNewVenue(Location location) throws SQLException{
+    public void addNewVenue(Location location, int isFromAddNewLocation){
         Wipe.wipe();
-        System.out.println("=== Twoja lokacja wymaga przynajmniej 1 sali ===");
+        if (isFromAddNewLocation == 1) {
+            System.out.println("=== Twoja lokacja wymaga przynajmniej 1 sali ===");
+        }
         System.out.println("Podaj nazwe sali:");
         String venueName = scanner.nextLine();
         System.out.println("Podaj pojemnosc sali: ");
