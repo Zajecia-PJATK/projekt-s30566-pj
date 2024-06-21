@@ -10,6 +10,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pj.s30566.model.user.User;
@@ -19,7 +24,8 @@ public class LocationDriver extends MysqlDriver {
     private static final String INSERT_LOCATION_SQL = "INSERT INTO Locations (address, city, country, location_name, postal_code, user_id) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String INSERT_VENUE_SQL = "INSERT INTO Venues (capacity, location_id, venue_name) VALUES (?, ?, ?)";
     private static final String GET_LOCATION_SQL = "SELECT * FROM Locations WHERE location_name = ?";
-    private static final String GET_VENUE_BY_LOCATION_ID = "SELECT * FROM Venues WHERE location_id = ?";
+    private static final String GET_VENUES_BY_LOCATION_ID = "SELECT * FROM Venues WHERE location_id = ?";
+    private static final String GET_ALL_LOCATIONS_BY_USER_ID = "SELECT * FROM Locations WHERE user_id = ?";
 
     public LocationDriver(){
 
@@ -37,6 +43,35 @@ public class LocationDriver extends MysqlDriver {
         } catch (SQLException e) {
             logger.error("An error occurred while adding location {}", location.getLocationName(), e);
         }
+    }
+
+    public List<Location> getLocationsByUser(int userID) {
+        int locationId;
+        String address;
+        String city;
+        Countries country;
+        String locationName;
+        String postalCode;
+        ResultSet result;
+        List<Location> locations = new ArrayList<>();
+        try (PreparedStatement preparedStatement = super.getConnection().prepareStatement(GET_ALL_LOCATIONS_BY_USER_ID)){
+            preparedStatement.setInt(1, userID);
+            result = preparedStatement.executeQuery();
+            while (result.next()){
+                locationId = result.getInt("location_id");
+                locationName = result.getString("location_name");
+                city = result.getString("city");
+                address = result.getString("address");
+                postalCode = result.getString("postal_code");
+                country = Countries.valueOf(result.getString("country"));
+
+                Location location = new Location(locationId, locationName, city, address, postalCode, country, userID);
+                locations.add(location);
+            }
+        } catch (SQLException e) {
+            logger.error("An error occurred while getting events ", e);
+        }
+        return locations;
     }
 
     public void addVenue(Location.Venue venue) throws SQLException{
@@ -81,28 +116,27 @@ public class LocationDriver extends MysqlDriver {
         return location;
     }
 
-    public Location.Venue getVenuesByLocationID(int locationId){
+    public List<Location.Venue> getVenuesByLocationID(int locationId){
         int capacity;
         int venueId;
         String venueName;
-        Location.Venue venue;
-        try (PreparedStatement preparedStatement = super.getConnection().prepareStatement(GET_VENUE_BY_LOCATION_ID)){
+        List<Location.Venue> venues = new ArrayList<>();
+        try (PreparedStatement preparedStatement = super.getConnection().prepareStatement(GET_VENUES_BY_LOCATION_ID)){
             preparedStatement.setInt(1, locationId);
             ResultSet result = preparedStatement.executeQuery();
-            if (result.next()){
+            while (result.next()){
                 capacity = result.getInt("capacity");
                 venueId = result.getInt("address");
                 venueName = result.getString("city");
 
-                venue = new Location.Venue(venueId, locationId, venueName, capacity);
-            } else {
-                return null;
+                Location.Venue venue = new Location.Venue(venueId, locationId, venueName, capacity);
+                venues.add(venue);
             }
         } catch (SQLException e) {
             logger.error("An error occurred while getting venue ", e);
             return null;
         }
-        return venue;
+        return venues;
 
     }
 
