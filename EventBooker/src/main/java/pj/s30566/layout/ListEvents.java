@@ -23,24 +23,9 @@ public class ListEvents {
 
             System.out.println("Nazwa: " + eventList.get(index).getEventName());
             System.out.println("Typ: " + eventList.get(index).getEventType().name());
+            System.out.println("Cena biletu: " + eventList.get(index).getTicketPrice() + " PLN");
 
-            if (console != null){
-                try {
-                    input = (char) console.reader().read();
-                } catch (IOException e){
-                    System.out.println("Problem z konsolą.");
-                    input = scanner.next().charAt(0);
-                }
-                if (input == 'a'){
-                    index = (index - 1 + eventList.size()) % eventList.size();
-                } else if (input == 'd'){
-                    index = (index + 1) % eventList.size();
-                } else if (input == 'q') {
-                    break;
-                } else {
-                    System.out.println("Zły przycisk!");
-                }
-            } else {
+
                 input = scanner.next().charAt(0);
                 if (input == 'a'){
                     index = (index - 1 + eventList.size()) % eventList.size();
@@ -51,7 +36,7 @@ public class ListEvents {
                 } else {
                     System.out.println("Zły przycisk!");
                 }
-            }
+
 
 
 
